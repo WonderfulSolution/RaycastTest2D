@@ -1,29 +1,18 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+using UnityEngine;
+using System.Collections;
 
-# Precompiled Headers
-*.gch
-*.pch
+public class RaycastTest2 : MonoBehaviour {
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+	void Update () {
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		if (Input.GetMouseButton(0))
+		{
+			RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 10);
+			if (hit.collider)
+			{
+				Debug.DrawLine(ray.origin, hit.transform.position, Color.blue, 0.1f, true);
+				Debug.Log(hit.transform.name);
+			}
+		}
+	}
+}
